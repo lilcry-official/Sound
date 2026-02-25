@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LIL CRY | Artiste</title>
+  <meta name="description" content="Site officiel de presentation de LIL CRY, jeune artiste en debut de carriere." />
+  <style>
+    :root {
+      --bg-1: #06070f;
+      --bg-2: #0b1020;
+      --cyan: #00f0ff;
+      --blue: #3b82f6;
+      --pink: #ff2fa3;
+      --text: #eaf7ff;
+      --muted: #8fb3c8;
+      --glass: rgba(8, 16, 32, 0.62);
+      --border: rgba(0, 240, 255, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", "Eurostile", "Orbitron", sans-serif;
+      color: var(--text);
+      background: radial-gradient(1300px 800px at 10% -10%, #12224c 0%, transparent 55%),
+                  radial-gradient(1000px 700px at 100% 0%, #2b0f48 0%, transparent 50%),
+                  linear-gradient(140deg, var(--bg-1), var(--bg-2));
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+
+    #grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0, 240, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at 50% 40%, black 35%, transparent 100%);
+      animation: gridMove 14s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(48px); }
+    }
+
+    #glow-orb {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      right: -120px;
+      top: -120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,240,255,0.3), rgba(59,130,246,0.08), transparent 70%);
+      filter: blur(8px);
+      animation: floatOrb 9s ease-in-out infinite alternate;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes floatOrb {
+      to { transform: translate(-70px, 80px) scale(1.1); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 92vw);
+      margin: 0 auto;
+      padding: 28px 0 46px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 32px rgba(0, 240, 255, 0.12);
+      animation: fadeInUp .7s ease both;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .logo-wrap {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,240,255,.5);
+      padding: 4px;
+      background: rgba(4, 16, 34, .95);
+      box-shadow: 0 0 20px rgba(0,240,255,.35);
+      flex: 0 0 auto;
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      letter-spacing: .18em;
+      white-space: nowrap;
+      text-shadow: 0 0 10px rgba(0,240,255,.4);
+    }
+
+    .chip {
+      border: 1px solid rgba(255,47,163,.55);
+      color: #ffd8ef;
+      background: rgba(255,47,163,.1);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: .82rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .hero {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--glass);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 40px rgba(0, 150, 255, 0.14);
+      overflow: hidden;
+      animation: fadeInUp .85s ease both;
+    }
+
+    .hero-main {
+      padding: clamp(24px, 3.8vw, 40px);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 78% 20%, rgba(59,130,246,.22), transparent 55%);
+      z-index: -1;
+    }
+
+    .kicker {
+      margin: 0;
+      color: var(--cyan);
+      font-size: .86rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .hero h2 {
+      margin: 10px 0 14px;
+      font-size: clamp(2rem, 5vw, 3.7rem);
+      line-height: .95;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      text-shadow: 0 0 18px rgba(0,240,255,.38);
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(.97rem, 2vw, 1.07rem);
+      max-width: 62ch;
+      line-height: 1.7;
+    }
+
+    .actions {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      border: 1px solid rgba(0,240,255,.55);
+      color: #eaffff;
+      text-decoration: none;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      transition: .2s ease;
+      background: rgba(0,240,255,.12);
+      box-shadow: 0 0 16px rgba(0,240,255,.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,.2) 45%, transparent 70%);
+      transform: translateX(-130%);
+      transition: .35s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 22px rgba(0,240,255,.55);
+    }
+
+    .btn:hover::after { transform: translateX(130%); }
+
+    .btn.alt {
+      border-color: rgba(255,47,163,.55);
+      background: rgba(255,47,163,.14);
+      box-shadow: 0 0 16px rgba(255,47,163,.24);
+    }
+
+    .info {
+      padding: 24px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .card {
+      padding: 16px;
+      border: 1px solid rgba(143,179,200,.23);
+      border-radius: 14px;
+      background: rgba(8, 16, 32, .72);
+      transition: .22s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0,240,255,.48);
+      box-shadow: 0 0 18px rgba(0,240,255,.18);
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: .95rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--cyan);
+    }
+
+    .card p {
+      margin: 0;
+      color: #c5dced;
+      line-height: 1.6;
+      font-size: .95rem;
+    }
+
+    .links {
+      margin-top: 22px;
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--glass);
+      box-shadow: 0 0 32px rgba(59,130,246,.15);
+      animation: fadeInUp 1s ease both;
+    }
+
+    .links p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .ticker {
+      margin-top: 20px;
+      border: 1px solid rgba(0,240,255,.25);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(3, 12, 24, .7);
+      animation: fadeInUp 1.1s ease both;
+    }
+
+    .ticker-track {
+      white-space: nowrap;
+      display: inline-block;
+      padding: 10px 0;
+      color: #c8efff;
+      letter-spacing: .08em;
+      animation: scroll 20s linear infinite;
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      margin-top: 24px;
+      color: #89a8bb;
+      font-size: .85rem;
+      text-align: center;
+    }
+
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; }
+      .topbar { flex-wrap: wrap; }
+      .brand h1 { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+  <div id="grid"></div>
+  <div id="glow-orb"></div>
+
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo-wrap">
+          <img id="logo" src="lil.png" alt="Logo LIL CRY" />
+        </div>
+        <h1>LIL CRY OFFICIAL</h1>
+      </div>
+      <span class="chip">Future Sound • Haiti</span>
+    </header>
+
+    <section class="hero">
+      <article class="panel hero-main">
+        <p class="kicker">Nouvelle Generation</p>
+        <h2>LIL CRY</h2>
+        <p>
+          LIL CRY est un jeune artiste masculin en début de carrière, originaire d’Haïti. Son identité privée (nom civil, âge) n’a pas encore été rendue publique, traduisant une volonté de construire son image artistique avant toute médiatisation personnelle.
+          
+Bien qu’il n’ait pas encore publié de morceau officiel sur les plateformes de streaming, il partage régulièrement des extraits de ses créations sur les réseaux sociaux, amorçant ainsi le développement de sa présence numérique.
+
+À ce stade, il ne dispose pas encore d’un large public ni d’un fan club structuré, mais il pose progressivement les bases de son positionnement dans l’industrie musicale haïtienne.
+        </p>
+        <div class="actions">
+          <a class="btn" href="https://www.tiktok.com/@lilcry_official?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer">Voir TikTok</a>
+          <a class="btn alt" href="#bio">En savoir plus</a>
+        </div>
+      </article>
+
+      <aside id="bio" class="panel info">
+        <div class="card">
+          <h3>Statut</h3>
+          <p>Artiste emergent en phase de lancement.</p>
+        </div>
+        <div class="card">
+          <h3>Releases</h3>
+          <p>Aucune sortie officielle pour le moment.</p>
+        </div>
+        <div class="card">
+          <h3>Presence en ligne</h3>
+          <p>Extraits de morceaux et univers artistique disponibles sur les reseaux sociaux.</p>
+        </div>
+        <div class="card">
+          <h3>Objectif</h3>
+          <p>Construire une identite forte et marquer la nouvelle scene musicale haitienne.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="links">
+      <p>Suivre LIL CRY et decouvrir les prochains extraits.</p>
+      <a class="btn" href="https://www.tiktok.com/@lilcry_official?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer">@lilcry_official</a>
+    </section>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        LIL CRY • NEW ERA • FUTURISTIC SOUND • HAITIAN SCENE • UPCOMING ARTIST • LIL CRY • NEW ERA • FUTURISTIC SOUND • HAITIAN SCENE • UPCOMING ARTIST •
+      </div>
+    </div>
+
+    <footer>
+      © 2026 LIL CRY - Site officiel de presentation.
+    </footer>
+  </main>
+
+  <script>
+    // Try common local logo names and keep the first existing file.
+    (function () {
+      const logo = document.getElementById('logo');
+      const candidates = [
+        'lil.png', 'lil.jpg', 'lil.jpeg', 'image lil.webp',
+        'LIL.png', 'LIL.jpg', 'LIL.jpeg', 'LIL.webp',
+        'lil cry.png', 'LIL CRY.png', 'logo.png', 'logo.jpg'
+      ];
+
+      let i = 0;
+      const testNext = function () {
+        if (i >= candidates.length) {
+          logo.alt = 'Logo non trouve';
+          logo.style.opacity = '.35';
+          return;
+        }
+        const name = candidates[i++];
+        const img = new Image();
+        img.onload = function () { logo.src = name; };
+        img.onerror = testNext;
+        img.src = name;
+      };
+
+      testNext();
+    })();
+  </script>
+</body>
+</html>
